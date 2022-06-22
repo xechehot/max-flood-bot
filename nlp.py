@@ -11,7 +11,7 @@ ROOT_PATH = Path('./')
 
 
 def predict(text, n_words, temperature=0.5, only_last_word=True, no_unk=True,
-            min_p=None, no_bar=False):
+            min_p=None, no_bar=True):
     awd_lstm_lm_config_old = dict(emb_sz=400, n_hid=1150, n_layers=3, pad_token=1, bidir=False, output_p=0.1,
                                   hidden_p=0.15, input_p=0.25, embed_p=0.02, weight_p=0.2, tie_weights=True,
                                   out_bias=True)

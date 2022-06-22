@@ -6,7 +6,12 @@ Build image:
 docker build . -t max-bot
 ```
 
-Run container:
+Run cmd:
 ```commandline
 docker run --name max-bot --rm -i -t max-bot bash
+```
+
+Run server:
+```commandline
+docker run --name max-bot --rm -e "PORT=80" -e "DEBUG=1" -p 8001:80  max-bot
 ```
