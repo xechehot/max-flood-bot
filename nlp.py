@@ -10,7 +10,7 @@ defaults.device = torch.device('cpu')
 ROOT_PATH = Path('./')
 
 
-def predict(text, n_words, temperature=0.5, only_last_word=False, no_unk=True,
+def predict(text, n_words, temperature=0.7, only_last_word=False, no_unk=True,
             min_p=None, no_bar=True):
     awd_lstm_lm_config_old = dict(emb_sz=400, n_hid=1150, n_layers=3, pad_token=1, bidir=False, output_p=0.1,
                                   hidden_p=0.15, input_p=0.25, embed_p=0.02, weight_p=0.2, tie_weights=True,
@@ -25,6 +25,7 @@ def predict(text, n_words, temperature=0.5, only_last_word=False, no_unk=True,
                                    pretrained=False,
                                    pretrained_fnames=('max_bot_tuned', 'max_bot_lm_vocab'),
                                    path=ROOT_PATH)
-
-    return learn.predict(text, n_words, temperature=temperature, only_last_word=only_last_word, no_unk=no_unk,
+    prepared_text = text + ' xxmessage xxmax'
+    predicted = learn.predict(prepared_text, n_words, temperature=temperature, only_last_word=only_last_word, no_unk=no_unk,
                          min_p=min_p, no_bar=no_bar)
+    return predicted

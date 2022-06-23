@@ -8,11 +8,11 @@ logger = logging.getLogger(__name__)
 
 
 def get_n_words():
-    return random.randint(4, 50)
+    return random.randint(30, 60)
 
 
 def get_temperature():
-    return random.uniform(0.3, 1.)
+    return random.uniform(0.6, 0.8)
 
 
 def start(update: Update, context: CallbackContext) -> None:
@@ -31,4 +31,8 @@ def predict(update: Update, context: CallbackContext) -> None:
                              temperature=temperature,
                              only_last_word=False)
     logger.info(f'<-- {predicted_text}')
-    update.message.reply_text(predicted_text)
+    for sm in predicted_text.split('xxmessage')[1:]:
+        for m in sm.split('xxmax'):
+            if m.strip() != '':
+                update.message.reply_text(m)
+    # update.message.reply_text(predicted_text)
